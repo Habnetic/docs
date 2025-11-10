@@ -14,10 +14,27 @@ It replaces private note-taking tools with a transparent, version-controlled doc
 ## 🗂 Structure
 ```
 docs/
-├── theory/            → Bayesian reasoning, resilience modeling, and statistical foundations
-├── projects/          → Research case studies and frameworks (e.g., Resilient Housing Bayes)
-├── vision/            → Lab philosophy, manifesto, and outreach materials
-└── references/        → Bibliography, citations, and external resources
+│   LICENSE
+│   README.md
+│
+├───projects/
+│       lunar_analogue_future_case.md
+│       resilient_housing_bayes_summary.md
+│       target_sites.md
+│
+├───references/
+│       bibliography.bib
+│       datasets_list.md
+│
+├───theory/
+│       bayesian_reasoning.md
+│       resilience_metrics.md
+│       uncertainty_modeling.md
+│
+└───vision/
+        collaboration.md
+        manifesto.md
+        roadmap_2026.md
 ```
 
 ---
