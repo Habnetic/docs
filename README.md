@@ -12,11 +12,13 @@ It replaces private note-taking tools with a transparent, version-controlled doc
 ---
 
 ## 🗂 Structure
+```
 docs/
 ├── theory/            → Bayesian reasoning, resilience modeling, and statistical foundations
 ├── projects/          → Research case studies and frameworks (e.g., Resilient Housing Bayes)
 ├── vision/            → Lab philosophy, manifesto, and outreach materials
 └── references/        → Bibliography, citations, and external resources
+```
 
 ---
 
