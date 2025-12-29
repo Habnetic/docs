@@ -9,9 +9,26 @@ This repository serves as the written backbone of Habnetic — a structured arch
 
 It replaces private note-taking tools with a transparent, version-controlled documentation system.
 
+The guiding principles, scope, and intent of the project are defined in
+[`vision/manifesto.md`](vision/manifesto.md).
+
+---
+
+## 🧭 How to read this repository
+
+This documentation is intentionally **incremental**.
+
+Many sections begin as conceptual scaffolding or placeholders and are expanded
+only when they are actively used in models or decisions. This avoids freezing
+assumptions too early and keeps documentation aligned with working code.
+
+If a document appears minimal, it likely reflects an area that is still under
+active exploration or has not yet been exercised by the modeling pipeline.
+
 ---
 
 ## 🗂 Structure
+
 ```
 docs/
 │   LICENSE
@@ -40,9 +57,13 @@ docs/
 ---
 
 ## ✍️ Conventions
-- All text written in Markdown (`.md`) for maximum compatibility.
-- Use relative links between sections (e.g., `../projects/resilient_housing_bayes.md`).
+- All text is written in Markdown (`.md`) for maximum compatibility.
+- Use relative links between sections (e.g. `../projects/resilient_housing_bayes_summary.md`).
 - Reference datasets by linking to the [Habnetic Data Repository](https://github.com/Habnetic/data).
+
+This repository is **not** a step-by-step tutorial.  
+Executable examples, models, and workflows live in the
+[Resilient Housing Bayes](https://github.com/Habnetic/resilient-housing-bayes) repository.
 
 ---
 
@@ -53,4 +74,4 @@ docs/
 
 ---
 
-© 2025 Habnetic — Open Research for Resilient Futures
+© 2026 Habnetic — Open Research for Resilient Futures
