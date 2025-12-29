@@ -3,6 +3,28 @@
 ## One-line summary
 A Bayesian simulation framework for how housing systems respond to stochastic hazards, estimating impacts, downtime, and reconstruction cost under uncertainty.
 
+## Current focus (Phase II)
+
+**Objective:**  
+Complete one end-to-end, real-data “thin slice” of the framework.
+
+**Scope:**
+- Site: DSS (Donostia–San Sebastián)
+- Hazard: coastal / pluvial flooding
+- Exposure: building footprints (proxy)
+- Outputs: damage state probabilities and downtime distributions
+
+**Success criterion:**
+Given a flood scenario in DSS, the model produces a posterior distribution of
+building downtime, with explicit uncertainty and documented failure modes.
+
+**Out of scope for this phase:**
+- additional cities or hazards
+- cost modeling
+- cross-site hierarchies
+- extreme or extraplanetary analogs
+
+
 ## Core idea
 Resilience is not a single score. It is a distribution over outcomes:
 - probability of damage states
