@@ -6,7 +6,7 @@ Define how external collaborators can contribute without the project turning int
 ## Contribution pathways
 - data ingestion improvements (sources + provenance + scripts)
 - model components (fragility, downtime, cost)
-- validation case studies (DSS/SFO/SYN)
+- validation case studies (RTM/SFO/SYN)
 - documentation and tutorials
 
 ## Expectations
@@ -21,6 +21,6 @@ Define how external collaborators can contribute without the project turning int
 
 ## What to test next
 Create 3 “good first issues” in resilient-housing-bayes:
-1) DSS flood zones ingestion script
+1) RTM flood zones ingestion script
 2) OSM buildings clipping to bbox
 3) basic posterior predictive plotting template

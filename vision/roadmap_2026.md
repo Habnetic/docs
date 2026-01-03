@@ -2,36 +2,40 @@
 
 ## North star
 Deliver a reproducible Bayesian workflow for resilience assessment that works on:
-- one European benchmark (DSS)
-- one US benchmark (SFO)
-- one extreme synthetic analog (SYN)
+- one European benchmark (RTM, Phase 0)
+- one US benchmark (SFO, Phase I)
+- one extreme Earth analog (CON, Phase II)
+- with a clear path to extraterrestrial synthetic habitats (LUN, MAR)
 
 ## Milestones
+
 ### Q1
-- DSS thin-slice pipeline: hazard → exposure → fragility → downtime
-- Data repo: scripts + provenance for at least 2 DSS datasets
-- First posterior predictive checks documented
+- RTM thin-slice pipeline: hazard → exposure → fragility → downtime
+- Data repo: scripts + provenance for at least 2 RTM datasets
+- Prior predictive checks and first posterior predictive checks documented
 
 ### Q2
-- Expand DSS: include socioeconomic exposure proxy
-- Add SFO thin-slice (seismic)
+- Expand RTM: include socioeconomic exposure proxy
+- Add SFO thin-slice (seismic focus)
 - Model comparison baseline (LOO/WAIC) for at least 2 likelihood/prior variants
 
 ### Q3
-- Introduce SYN stress tests (out-of-distribution)
-- Cascading failure toy model (3 subsystems)
+- Introduce CON extreme Earth analog (isolation + thermal stress)
+- Out-of-distribution stress testing across RTM → SFO → CON
 - Documentation: “one-command” run instructions
 
 ### Q4
-- Cross-site hierarchy (partial pooling within site class)
+- Cross-site hierarchy (partial pooling across Earth-based sites)
 - Sensitivity analysis and robustness report
 - Public demo notebook + website narrative update
+- Conceptual extension to LUN / MAR (synthetic, no calibration)
 
 ## Backlog (explicitly not now)
-- Concordia Station (CON) extreme Earth analog (Phase 3)
-- high-fidelity building typologies
-- multi-agent occupant behavior
+- High-fidelity hydraulic flood depth modeling
+- Detailed building typologies and structural models
+- Multi-agent occupant behavior
+- Full lunar or Martian settlement simulations
 
 ## What to test next
-Define one DSS “success criterion” that is falsifiable, e.g.:
-PPC reproduces observed flood-zone exposure proportions within tolerance.
+Define one RTM success criterion that is falsifiable, e.g.:
+Posterior predictive checks reproduce observed proportions of buildings within regulated flood-adjacent zones within tolerance.

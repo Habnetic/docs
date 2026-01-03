@@ -3,19 +3,19 @@
 ## One-line summary
 A Bayesian simulation framework for how housing systems respond to stochastic hazards, estimating impacts, downtime, and reconstruction cost under uncertainty.
 
-## Current focus (Phase II)
+## Current focus (Phase 0)
 
 **Objective:**  
 Complete one end-to-end, real-data “thin slice” of the framework.
 
 **Scope:**
-- Site: DSS (Donostia–San Sebastián)
-- Hazard: coastal / pluvial flooding
+- Site: RTM (Rotterdam)
+- Hazard: coastal and pluvial flooding
 - Exposure: building footprints (proxy)
 - Outputs: damage state probabilities and downtime distributions
 
-**Success criterion:**
-Given a flood scenario in DSS, the model produces a posterior distribution of
+**Success criterion:**  
+Given a flood scenario in RTM, the model produces a posterior distribution of
 building downtime, with explicit uncertainty and documented failure modes.
 
 **Out of scope for this phase:**
@@ -41,10 +41,11 @@ Hazard → Vulnerability → Impact → Recovery
 - tail risk metrics (e.g., 95th percentile downtime)
 
 ## Site strategy
-- **DSS:** coastal + pluvial flooding benchmark
-- **SFO:** multi-hazard urban benchmark (seismic/surge/wildfire)
-- **SYN:** synthetic / lunar analog for extreme stress-testing
-- **CON (future):** extreme Earth analog for out-of-distribution validation
+- **RTM (Phase 0):** coastal + pluvial flooding benchmark (data-rich baseline)
+- **SFO (Phase I):** multi-hazard urban benchmark (seismic / surge / wildfire)
+- **CON (Phase II):** extreme Earth analog for out-of-distribution validation
+- **LUN (Phase III):** synthetic lunar habitat for extreme stress-testing
+- **MAR (Phase IV):** long-duration extraterrestrial settlement modeling
 
 ## Current status
 - Synthetic data generation: planned / implemented (link to code repo)
@@ -52,5 +53,5 @@ Hazard → Vulnerability → Impact → Recovery
 - Bayesian inference: planned / partial (PyMC + ArviZ)
 
 ## What to test next
-Pick one site (DSS) and run an end-to-end “thin slice”:
+Pick one site (RTM) and run an end-to-end “thin slice”:
 hazard layer → exposure join → fragility → downtime posterior predictive check.

@@ -33,7 +33,7 @@ Prefer scenario deltas:
 - ignoring tail risk (where the suffering lives)
 
 ## What to test next
-Pick DSS and define:
+Pick RTM and define:
 - a baseline building typology
 - a retrofit scenario
 Then compare Δq95(downtime) under identical hazard forcing.

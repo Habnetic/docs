@@ -2,7 +2,8 @@
 
 | Code | Name | Hazard Focus | Reasoning |
 |:--|:--|:--|:--|
-| DSS | Donostia–San Sebastián | Coastal & pluvial | European benchmark, ESA data |
-| SFO | San Francisco | Seismic, surge, wildfire | NASA / USGS data, urban risk diversity |
-| SYN | Lunar Analog | Dust, radiation, thermal | Extraplanetary extension of resilience models |
-| CON | Concordia Station (Antarctica) | Thermal extreme, isolation | Earth-based extreme habitat analog (Phase 3) |
+| RTM | Rotterdam | Coastal, pluvial, riverine | Data-rich European benchmark with strong flood governance and open datasets (Phase 0) |
+| SFO | San Francisco | Seismic, coastal surge, wildfire | Multi-hazard US city with diverse risk drivers and public scientific data (Phase I) |
+| CON | Concordia Station (Antarctica) | Thermal extreme, isolation, power failure | Extreme Earth analog with tightly coupled systems (Phase II) |
+| LUN | Moon (Synthetic Habitat) | Radiation, thermal extreme, micrometeoroids | Fully engineered extraterrestrial habitat for stress-testing assumptions (Phase III) |
+| MAR | Mars (Synthetic Habitat) | Radiation, dust storms, isolation | Long-duration off-world settlement and recovery modeling (Phase IV) |

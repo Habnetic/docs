@@ -4,27 +4,40 @@ This is a human-readable index of datasets used or planned for Habnetic benchmar
 Operational details live in the Habnetic/data repository.
 
 ## Sites
-- DSS (Donostia–San Sebastián)
+- RTM (Rotterdam)
 - SFO (San Francisco)
-- SYN (Synthetic / Lunar analog)
-- CON (Concordia Station) – future
+- CON (Concordia Station, Antarctica) – future
+- LUN (Moon, synthetic habitat)
+- MAR (Mars, synthetic habitat)
 
-## DSS (planned / in progress)
-- ERA5 reanalysis (precip, temp) – forcing
-- Basque Government flood hazard zones – vector hazard extent
-- Copernicus EMS flood maps – raster event products
+## RTM (planned / in progress)
+- ERA5 reanalysis (precipitation, temperature) – climatic forcing
+- KNMI climate and wind observations – national reference
+- Rotterdam Open Data waterways and water-adjacent constraints – regulatory flood exposure proxy
+- Rijkswaterstaat rivers, canals, and coastal defense layers – infrastructural context
 - OpenStreetMap building footprints – exposure
-- EU/INE population grid – exposure proxy / socio
+- CBS Netherlands population and housing statistics – socio-demographic covariates
 
 ## SFO (planned / in progress)
-- USGS ShakeMap/PAGER – seismic intensity + exposure proxies
-- SF Open Data building footprints – exposure / typology proxy
-- NOAA/FEMA surge zones – coastal hazard extent
-- Census TIGER/ACS – population + socioeconomic covariates
+- USGS ShakeMap / PAGER – seismic intensity and exposure proxies
+- San Francisco Open Data building footprints – exposure / typology proxy
+- NOAA / FEMA coastal surge zones – coastal hazard extent
+- Census TIGER / ACS – population and socioeconomic covariates
 
-## SYN (planned / in progress)
-- Procedural hazard fields (noise-based) – controlled experiments
-- Optional lunar DEM tiles – terrain seed
+## CON (planned / future)
+- Station layout and infrastructure schematics – exposure proxy
+- ERA5 / polar climate reanalysis – environmental forcing
+- Procedural outage and failure scenarios – isolation and system stress testing
+
+## LUN (synthetic / planned)
+- Procedural hazard fields (radiation, thermal cycling, micrometeoroids)
+- Synthetic habitat layouts and component hierarchies
+- Optional lunar DEM tiles – terrain and siting context
+
+## MAR (synthetic / planned)
+- Procedural hazard fields (radiation, dust storms, thermal extremes)
+- Synthetic settlement layouts and recovery timelines
+- Optional Mars DEM tiles – terrain and environmental context
 
 ## Notes
 Each dataset should have:
@@ -32,4 +45,3 @@ Each dataset should have:
 - license
 - raw path and processing path
 - minimal validation checks (CRS, bbox, missingness)
-
