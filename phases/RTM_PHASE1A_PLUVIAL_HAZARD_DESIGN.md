@@ -1,4 +1,4 @@
-# RTM Phase 1 — Pluvial Hazard Implementation
+# RTM Phase 1a — Pluvial Hazard Implementation
 
 Status: COMPLETE  
 Date: 2026-02-26
@@ -93,3 +93,10 @@ Phase 1 establishes a deterministic hazard scaffold only.
 
 Introduce minimal outcome proxy and re-enable Bayesian inference
 under Exposure → Hazard → Outcome structure.
+
+## Phase linkage
+
+- Phase 1a produces the deterministic hazard `H_pluvial_v1`.
+- Phase 1b consumes `H_pluvial_v1` and introduces a minimal synthetic outcome to validate
+  Bayesian inference and posterior decision stability.
+  See: `phases/RTM_PHASE1B_SYNTH_OUTCOME_DECISION_STABILITY.md`.
