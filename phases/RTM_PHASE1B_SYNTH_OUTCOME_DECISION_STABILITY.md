@@ -1,7 +1,7 @@
 # RTM Phase 1b — Synthetic Outcome + Decision Stability (Logistic)
 
 Status: COMPLETE (Phase 1b)
-Date: 2026-02-26
+Date: 2026-03-01
 Scope: Synthetic damage outcome + Bayesian inference + posterior decision stability metrics.
 Non-claim: This is not empirical flood risk. It is a scaffold to validate decision-stability mechanics.
 
@@ -26,7 +26,7 @@ posterior → decision quantity → stability diagnostics.
 
 Outcome definition:
 - Binary damage flag `Y_damage_v1b ∈ {0,1}`
-- Baseline damage rate: **5%**
+- Target baseline damage rate: **~5%** (set via α; realized prevalence depends on sample and       predictors)
 - Generated via a logistic model of standardized exposure and hazard:
   - `logit(p_i) = α + β_E * E_std_i + β_H * H_std_i`
   - `Y_i ~ Bernoulli(p_i)`
@@ -54,7 +54,7 @@ Primary decision object:
 
 Derived stability diagnostics across k:
 - Mean top-k membership:
-  - `mean(topk_prob) = k / N` (sanity identity; must hold)
+  - `mean(topk_prob) ≈ k / N` (sanity identity; must hold when topk_prob is computed over the same N buildings)
 - Borderline set share:
   - share of buildings with `0.2 < topk_prob < 0.8`
 - Mean membership entropy (Bernoulli entropy of topk_prob)
