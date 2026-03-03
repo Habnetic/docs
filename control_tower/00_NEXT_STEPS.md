@@ -1,211 +1,193 @@
 # Habnetic — Next Steps (Control Tower)
 
-last_updated: 2026-02-05  
+last_updated: 2026-03-03  
 owner: C. Price  
-scope: RTM (Rotterdam) pipeline + immediate modeling steps
+scope: RTM (Rotterdam) pipeline — Phase 0 + Phase 1 completed
 
 This file lives in the parent `Habnetic/` folder on purpose.  
 It is the **one place to read before touching any repo**.
 
 ---
 
-## Where we are right now (RTM)
+# Where we are right now (RTM)
 
-✅ Spatial backbone complete  
+## Phase 0 — Deterministic Exposure Backbone (Frozen) ✅
+
 - RTM boundary, buildings, hydrography normalized, clipped, validated  
-- CRS harmonized (EPSG:28992), geometry hygiene enforced
+- CRS harmonized (EPSG:28992), geometry hygiene enforced  
+- 221,324 buildings processed  
+- Stable `bldg_id` propagated end-to-end  
 
-✅ Water exposure priors computed  
+Water exposure priors computed:
+
 - Distance to nearest water  
 - Water length density at 250 m / 500 m / 1000 m  
-- Computed for **all 221,324 buildings**
 
-✅ Stable building identifier fixed  
-- Deterministic `bldg_id` propagated end-to-end  
-- No implicit index joins, no hidden geometry state
+Deterministic latent exposure proxy:
 
-✅ Notebook 01 — data exploration  
-- Distributions validated  
-- Correlations understood and documented
+- `E_hat` computed
+- Exported with metadata
+- Spatial sanity verified in QGIS
 
-✅ Notebook 03 — deterministic exposure completed  
-- Latent exposure proxy `E_hat` computed deterministically  
-- Exported with explicit assumptions and metadata
+Hazard scaffolding:
 
-⚠️ Notebook 03 — Bayesian section intentionally disabled  
-- Confirmed: **no outcome = no learning**  
-- Inference deferred by design
+- Deterministic pluvial proxy `H_pluvial_v0`
+- Structural placeholder only
+- No physical calibration implied
 
-✅ Notebook 04 — hazard scaffolding started  
-- First pluvial hazard proxy introduced  
-- Deterministic, placeholder forcing only  
-- No physical flood modeling implied
+Environment:
 
-✅ Environment stabilized  
-- venv + ipykernel wired correctly  
-- Notebooks runnable and reproducible
+- venv stable
+- PyTensor compiler working
+- Notebooks reproducible
+
+Phase 0 status: COMPLETE
 
 ---
 
-## Immediate state (just completed)
+## Phase 1 — Bayesian Baseline + Decision Stability (Closed) ✅
 
-### Deterministic exposure index (RTM v0)
+Phase 1 introduces a minimal generative structure and validates the full:
 
-A **deterministic latent exposure proxy** has been locked in:
+Exposure → Hazard → Outcome → Posterior → Decision
 
-- `E_hat` is **not a hazard**
-- `E_hat` is **not a probability**
-- `E_hat` is **not a risk score**
+### 1. Outcome proxy (synthetic)
 
-It is a **relative exposure ranking** suitable for:
-- clustering
-- conditioning
-- future hazard coupling
+Implemented:
 
-### Deterministic hazard proxy (RTM v0)
+- Logistic synthetic damage proxy (`Y_damage_v1b`)
+- Baseline probability scenarios: p02, p05, p10
+- Beta sensitivity scenarios (v1c):
+  - bE02_bH06
+  - bE10_bH02
+  - bE10_bH06
 
-A **first pluvial hazard forcing proxy** has been introduced:
-
-- `H_pluvial_v0` is **not flooding**
-- `H_pluvial_v0` is **not intensity-calibrated**
-- `H_pluvial_v0` is a **structural placeholder**
-
-Purpose:
-- enable Exposure → Hazard → Outcome wiring
-- prevent premature Bayesian inference
-- freeze interfaces before adding realism
-
-### Artifacts produced
-
-**Data**
-- `data/processed/RTM/priors/building_water_proximity.parquet` ✅
-
-**Model outputs**
-- `resilient-housing-bayes/outputs/rtm/water_exposure_Ehat_v0.parquet` ✅
-- `resilient-housing-bayes/outputs/rtm/water_exposure_Ehat_v0_stats.json` ✅
-- `resilient-housing-bayes/outputs/rtm/hazard_pluvial_v0.parquet` ✅
+Explicitly synthetic.
+No empirical calibration claims.
 
 ---
 
-## v0 deterministic definition (frozen)
+### 2. Bayesian inference (validated)
 
-Let:
+Model:
 
-- `d = dist_to_water_m`
-- `rho_r = water_len_density_{r}m`
+logit(p_i) = α + β_E E_i + β_H H_i
 
-Transforms:
+Priors:
 
-- `x_d     = -log(d + eps)`
-- `x_250   = log(rho_250 + eps)`
-- `x_500   = log(rho_500 + eps)`
-- `x_1000  = log(rho_1000 + eps)`
+α, β_E, β_H ~ Normal(0, 2.5)
 
-Standardization:
-
-- `z_k = (x_k - mean(x_k)) / std(x_k)`
-
-Deterministic exposure proxy:
-
-E_hat = (z_d + z_250 + z_500 + z_1000) / 4
-
-
-Interpretation constraints:
-- relative exposure only
-- no probability implied
-- valid **only within RTM context**
+- MCMC (NUTS)
+- Convergence diagnostics verified (r_hat ≈ 1)
+- ESS adequate
+- Subsample inference (N=5000) for structural validation
 
 ---
 
-## Next step (after a pause, not immediately)
+### 3. Posterior decision extraction
 
-### Phase 1b — Outcome proxy (gate to inference)
+Computed from posterior draws:
 
-Introduce **one minimal outcome variable**, e.g.:
+- posterior mean probability per building
+- posterior standard deviation
+- top-k membership probability
+- ranking overlap metrics
+- entropy
+- borderline share (0.2 < p < 0.8)
 
-- binary damage flag (synthetic)
-- ordinal downtime class
-- toy continuous loss index
+Sensitivity validated across:
 
-Requirements:
-- joined by `bldg_id`
-- explicitly labeled synthetic (if synthetic)
-- no calibration claims
+- baseline probability
+- beta structure
 
-**Bayesian inference becomes legal only after this step.**
+Result:
 
----
-
-## Phase 2 — Exposure + Hazard Observatory (v0)
-
-### Goal
-
-Create a **read-only observatory** that:
-
-- visualizes deterministic artifacts (`E_hat`, `H_pluvial_v0`)
-- records provenance
-- produces human-readable run artifacts
-
-This is **not** a hazard dashboard.  
-This is **not** a decision support tool.
+- High ranking stability under aligned generative structure
+- Borderline region small for k ≤ 5000
 
 ---
 
-### Allowed scope (strict)
+### 4. Citywide posterior scoring (N=221,324)
 
-The v0 observatory may show:
-- spatial view of buildings + water network
-- deterministic exposure and hazard proxies
-- run metadata (timestamp, code version, seed)
-- assumptions and interpretation constraints
-- structured run log
+Posterior draws applied to full city.
 
-The v0 observatory must **not**:
-- claim flood probability or risk
-- show posteriors or uncertainty bands
-- include sliders, toggles, or controls
-- re-run inference or mutate inputs
+Produced per scenario:
 
----
+- `p_mean_city`
+- `p_sd_city`
+- `topk_prob_city_1000`
+- `topk_prob_city_2500`
+- `topk_prob_city_5000`
 
-### Implementation principle
+Sanity condition verified:
 
-The observatory consumes **immutable pipeline artifacts**.
+mean(topk_prob_city_k) ≈ k / N_city
 
-Minimum required artifacts per run:
-- `state_snapshot.json`
-- map snapshot(s)
-- references to parquet outputs
-- structured run log
+Citywide instability share:
+
+< 0.3% for k ≤ 5000
+
+Phase 1 status: COMPLETE
 
 ---
 
-### Deliverable (v0)
+# What RTM currently is
 
-- One **static HTML report per run**
-- Generated automatically at pipeline completion
-- Stored under:
+RTM now provides:
 
-runs/<run_id>/
+- Deterministic exposure backbone (Phase 0)
+- Bayesian structural baseline (Phase 1)
+- Posterior → decision mapping
+- City-scale ranking stability metrics
+- Reproducible full pipeline
 
+It does NOT yet include:
 
-This report is the **canonical human interface** to RTM v0.
-
----
-
-## What NOT to do (still true)
-
-- Do **not** claim flood probability.
-- Do **not** enable Bayesian inference without an outcome.
-- Do **not** introduce a second hazard yet.
-- Do **not** commit large generated artifacts without policy (LFS or equivalent).
+- Probabilistic hazard uncertainty
+- Real calibrated damage data
+- Multi-hazard composition
+- Cross-city transfer validation
 
 ---
 
-## Canonical docs to update
+# Next milestone — Phase 2 (Not started)
 
-- `Habnetic/docs/references/exposure/rtm_water_exposure_v0.md`
-  - frozen exposure definition
-  - hazard placeholder note
-  - interpretation constraints
-  - links to generated artifacts
+Introduce structural uncertainty.
+
+Planned directions:
+
+- Probabilistic hazard layer
+- Hazard uncertainty propagation
+- Specification sensitivity
+- Cross-city stress testing
+- Posterior rank variance inflation analysis
+
+Phase 2 must preserve:
+
+- Generative coherence
+- Explicit assumptions
+- Clear separation of deterministic vs probabilistic components
+
+---
+
+# What NOT to do
+
+- Do not claim real flood probability.
+- Do not imply empirical validation.
+- Do not add new hazards prematurely.
+- Do not blur Phase 1 baseline with Phase 2 ambitions.
+
+---
+
+# Canonical docs to keep aligned
+
+- `docs/references/exposure/rtm_water_exposure_v0.md`
+- `00_RTM_PIPELINE_STATUS.md`
+- inference notebooks (07, 12, 13, 14)
+- city scoring outputs under `outputs/rtm/city_scoring/`
+
+This file defines the operational state of Habnetic RTM.
+
+Phase 0: exposure backbone frozen.  
+Phase 1: Bayesian baseline closed.  
+Phase 2: structural uncertainty (future).

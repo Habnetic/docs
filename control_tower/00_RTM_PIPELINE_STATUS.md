@@ -81,6 +81,13 @@ If you’re confused, read this before opening QGIS or writing more code.
   - constant forcing, no calibration
   - joined by `bldg_id`
 
+**Phase 1 — Bayesian baseline**
+- synthetic outcome proxy implemented
+- logistic Bayesian model validated
+- sensitivity experiments (baseline + beta)
+- posterior decision metrics computed
+- citywide posterior scoring completed (N=221,324)
+
 
 
 **Model outputs**
@@ -180,3 +187,91 @@ Then add **one** simple outcome:
 Only then does Bayesian inference stop being decorative and start being useful.
 
 ---
+
+
+## 6) Phase 1 — Bayesian Baseline + Decision Stability (v1b / v1c)
+
+Phase 1 introduces a minimal generative structure and validates the full:
+
+Exposure → Hazard → Outcome → Posterior → Decision pipeline.
+
+### A. Outcome proxy (synthetic, explicit)
+
+- Logistic damage proxy Y_damage_v1b
+- Baseline probabilities explored: p02, p05, p10
+- Beta sensitivity scenarios explored (v1c):
+
+    - bE02_bH06
+    - bE10_bH02
+    - bE10_bH06
+
+- No empirical calibration (explicitly synthetic)
+- Purpose: structural validation of inference + decision extraction
+
+### B. Bayesian inference (subsampled N=5000)
+
+- Logistic model:
+- logit(p_i) = α + β_E E_i + β_H H_i
+- Priors:
+  α, β_E, β_H ~ Normal(0, 2.5)
+- MCMC (NUTS)
+- Convergence diagnostics verified (r_hat ≈ 1, ESS adequate)
+
+Inference intentionally performed on subsample (N=5000)
+to validate model mechanics efficiently.
+
+### C. Posterior decision objects
+
+From posterior draws:
+
+- posterior mean probability per building
+- posterior standard deviation
+- top-k membership probability
+- ranking overlap metrics
+- entropy and borderline share
+- Decision stability quantified across:
+- baseline probability sensitivity
+- beta sensitivity
+
+### D. Citywide posterior scoring (N=221,324)
+
+Posterior draws from subsample inference applied to full city:
+- p_mean_city
+- p_sd_city
+- topk_prob_city_k for k ∈ {1000, 2500, 5000}
+
+Sanity check:
+
+- mean(topk_prob_city_k) ≈ k / N_city
+
+Result:
+
+- High ranking stability under aligned generative structure
+- Borderline region small (<0.3% for k ≤ 5000)
+
+### E. Phase 1 interpretation
+
+Under:
+
+- coherent generative structure
+- strong exposure–hazard signal
+- low posterior variance
+
+Prioritisation decisions are structurally robust.
+
+Phase 1 establishes:
+
+- correctness of inference
+- correctness of posterior → decision mapping
+- scalability to full urban extent
+- baseline stability benchmark
+
+### Phase 1 status: COMPLETE
+
+Phase 1 closes the methodological baseline.
+
+Future phases introduce:
+
+- robabilistic hazard uncertainty
+- model misspecification
+- cross-city transfer stress tests
