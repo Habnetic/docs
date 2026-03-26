@@ -92,15 +92,11 @@ Notes:
 - No empirical damage calibration.
 - This phase validates the decision-stability mechanism only.
 
-## Next step (Phase 1c / Phase 2 boundary)
+## Transition to Phase 2
 
-Choose one:
+The following extensions were explored at the boundary between Phase 1 and Phase 2:
 
-1) Deterministic vs posterior ranking comparison:
-   - overlap of Top-k sets under `p_mean` vs posterior membership distribution
+- Deterministic vs posterior ranking comparison
+- Sensitivity to baseline damage rate (2%, 10%)
 
-2) Sensitivity stress test:
-   - rerun with baseline damage rate {2%, 10%} and compare stability curves
-
-3) Phase 2 entry:
-   - introduce probabilistic hazard (GEV / return levels) and propagate hazard uncertainty
+These analyses inform the robustness tests introduced in Phase 2.
