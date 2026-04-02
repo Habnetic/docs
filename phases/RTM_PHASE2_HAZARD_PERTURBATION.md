@@ -1,25 +1,53 @@
+---
+title: "RTM — Phase 2: Hazard Perturbation"
+author: "Habnetic — Resilient Housing Bayes"
+date: "2026"
+geometry: margin=2.5cm
+fontsize: 11pt
+mainfont: Times New Roman
+---
+
 # RTM — Phase 2: Hazard Perturbation
 
 ## Objective
 
 Assess whether decision stability persists under uncertainty in the hazard proxy.
 
+Specifically:
+
+> Does the narrow decision boundary observed in Phase 1 remain stable when hazard inputs are perturbed?
+
 ---
 
 ## Approach
 
-- Introduce Gaussian perturbations to standardized hazard:
-  H_std + ε, ε ~ Normal(0, σ)
+### Hazard perturbation
 
+Gaussian noise is introduced to the standardized hazard proxy:
 
-- Evaluate impact on decision metrics:
-- Top-k membership probability
-- Borderline share
+\[
+H_{\text{std}}^{\text{perturbed}} = H_{\text{std}} + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma)
+\]
+
+Perturbation is applied **after standardization**, so that \(\sigma\) is directly interpretable in standard deviation units.
+
+### Evaluation metrics
+
+Decision stability is evaluated using:
+
+- **Top-k membership probability** (\(k = 1000\))
+- **Borderline share**:
+
+\[
+0.2 < P(i \in \text{Top-}k) < 0.8
+\]
 
 Tested noise levels:
-- σ = 0.10
-- σ = 0.20
-- σ = 0.30
+
+- \(\sigma = 0.00\) (baseline)
+- \(\sigma = 0.10\)
+- \(\sigma = 0.20\)
+- \(\sigma = 0.30\)
 
 ---
 
@@ -27,35 +55,44 @@ Tested noise levels:
 
 > Decision instability remains confined to a narrow boundary (~1.5–1.7% of assets) under moderate hazard perturbations.
 
-The ranking structure is robust to input noise.
+The prioritization structure is robust to input noise in the hazard proxy.
 
 ---
 
 ## Interpretation
 
-- Stability is not an artifact of precise hazard values
-- Uncertainty is localized, not systemic
-- The decision boundary appears to be a structural property of the model
+- Stability is not an artifact of precise hazard values  
+- Uncertainty is localized rather than systemic  
+- The decision boundary appears to be a structural property of the model and data  
 
 ---
 
 ## Evidence
 
-- See experiment:
-- `docs/experiments/phase2_hazard_noise.md`
+Detailed experiment:
+docs/experiments/phase2_hazard_noise.md
+
+
+Results are consistent across runs and computational environments, with only minor numerical variation that does not affect the qualitative structure of the decision boundary.
 
 ---
 
-## Implication for Next Phases
+## Implications for Next Phases
 
-- Supports moving to:
-- Outcome sensitivity (multiple scenarios)
-- Cross-city validation (Phase 3)
+- Supports transition to:
+  - Outcome sensitivity (multiple synthetic scenarios)
+  - Cross-city validation (Phase 3)
 
-- Latent hazard modeling (Phase 4) becomes a refinement, not a correction
+- Positions latent hazard modeling (Phase 4) as a refinement rather than a correction
 
 ---
 
 ## Status
 
-✅ Phase 2 validated (hazard robustness)
+**Phase 2 complete — hazard robustness validated**
+
+---
+
+## Interpretation (Short Version)
+
+> The decision boundary is narrow, stable, and robust to hazard uncertainty.

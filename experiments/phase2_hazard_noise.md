@@ -1,83 +1,130 @@
+---
+title: "Phase 2 — Hazard Perturbation Experiment"
+author: "Habnetic — Resilient Housing Bayes"
+date: "2026"
+geometry: margin=2.5cm
+fontsize: 11pt
+mainfont: Times New Roman
+---
+
 # Phase 2 — Hazard Perturbation Experiment
 
 ## Objective
 
-Test whether the decision-stability result from Phase 1 persists under controlled perturbations of the hazard proxy.
+The objective of Phase 2 is to test whether the decision-stability result obtained in Phase 1 persists under controlled perturbations of the hazard proxy.
 
 Specifically:
+
 > Does the narrow decision boundary remain stable when hazard is uncertain?
 
 ---
 
 ## Experimental Setup
 
-- Dataset: Rotterdam building-level dataset (~221k assets, subsampled to 5000)
-- Exposure: `E_hat_v0` (standardized)
-- Hazard: `H_pluvial_v1_mm` (standardized → `H_std`)
-- Outcome: synthetic (`Y_damage_v1b`, p=0.05 scenario)
-- Model: Bayesian logistic regression (PyMC)
+- **Dataset**: Rotterdam building-level dataset (~221,000 assets), subsampled to \(N = 5000\)
+- **Exposure**: \(E_{\text{hat\_v0}}\) (standardized)
+- **Hazard**: \(H_{\text{pluvial\_v1\_mm}}\) (standardized to \(H_{\text{std}}\))
+- **Outcome**: synthetic binary variable \(Y_{\text{damage\_v1b}}\), target baseline rate ≈ 5%
+- **Model**: Bayesian logistic regression (PyMC)
 
-### Perturbation
+### Generative Structure
 
-Hazard was perturbed as:
+The outcome is generated according to:
 
-H_std_perturbed = H_std + ε
-ε ~ Normal(0, σ)
+\[
+\text{logit}(p_i) = \alpha + \beta_E \cdot E_{\text{std}, i} + \beta_H \cdot H_{\text{std}, i}
+\]
 
+\[
+Y_i \sim \text{Bernoulli}(p_i)
+\]
 
-Tested values:
+This provides a minimal controlled setting to evaluate inference and decision stability.
 
-- σ = 0.00 (baseline)
-- σ = 0.10
-- σ = 0.20
-- σ = 0.30
+---
+
+## Hazard Perturbation
+
+The standardized hazard proxy is perturbed as:
+
+\[
+H_{\text{std}}^{\text{perturbed}} = H_{\text{std}} + \varepsilon
+\]
+
+\[
+\varepsilon \sim \mathcal{N}(0, \sigma)
+\]
+
+Perturbation is applied **after standardization**, so that \(\sigma\) is directly interpretable in standard deviation units.
+
+### Tested Noise Levels
+
+\[
+\sigma \in \{0.00, 0.10, 0.20, 0.30\}
+\]
 
 ---
 
 ## Metrics
 
-Primary metric:
+The primary decision metric is:
 
-- **Top-k membership probability** (k = 1000)
-- **Borderline share**:
-0.2 < P(top-k membership) < 0.8
+### Top-k Membership Probability
 
+For each asset \(i\):
 
-This represents assets whose prioritization is uncertain.
+\[
+P(i \in \text{Top-}k \mid \text{posterior draws})
+\]
+
+with \(k = 1000\).
+
+### Borderline Share
+
+Assets with uncertain prioritization are defined as:
+
+\[
+0.2 < P(i \in \text{Top-}k) < 0.8
+\]
+
+The **borderline share** is the proportion of such assets.
 
 ---
 
 ## Results
 
-| Sigma | Borderline Share |
-|------|------------------|
-| 0.00 | 0.0158 |
-| 0.10 | 0.0148 |
-| 0.20 | 0.0172 |
-| 0.30 | 0.0174 |
+| \(\sigma\) | Borderline Share |
+|-----------|------------------|
+| 0.00      | 0.0158           |
+| 0.10      | 0.0148           |
+| 0.20      | 0.0172           |
+| 0.30      | 0.0174           |
+
+This corresponds to approximately **75–85 buildings** in the 5000-asset inference sample.
 
 ---
 
 ## Key Observations
 
-### 1. Stability under perturbation
+### 1. Stability Under Perturbation
 
 - Borderline share remains within a narrow range (~1.5–1.7%)
-- No evidence of instability propagation
+- No evidence that instability propagates beyond a narrow decision boundary
 
-### 2. Saturation behavior
+### 2. Saturation Behavior
 
-- Increase from σ=0.10 → 0.20 is modest
-- Increase from σ=0.20 → 0.30 is negligible
+- Increase from \(\sigma = 0.10 \rightarrow 0.20\) is modest
+- Increase from \(\sigma = 0.20 \rightarrow 0.30\) is negligible
 
 This suggests:
-> the system reaches a stable uncertainty boundary early
 
-### 3. Structural interpretation
+> The system reaches a stable uncertainty boundary early.
 
-- ~98% of assets have stable prioritization
-- Uncertainty is confined to a small, persistent boundary
-- This boundary is not driven by noise but by model/data structure
+### 3. Structural Interpretation
+
+- Approximately 98% of assets exhibit stable prioritization
+- Uncertainty is confined to a small, persistent boundary region
+- This boundary is driven by model structure rather than noise realization
 
 ---
 
@@ -85,7 +132,13 @@ This suggests:
 
 > Decision instability remains concentrated under moderate hazard perturbations.
 
-The prioritization structure is robust to Gaussian noise in the hazard proxy (σ up to 0.30), indicating that results are not artifacts of precise hazard inputs.
+The prioritization structure is robust to Gaussian noise in the hazard proxy (\(\sigma \leq 0.30\)), indicating that results are not artifacts of precise hazard inputs.
+
+---
+
+## Robustness Across Runs
+
+Results are stable across runs and computational environments, with only minor numerical variation that does not affect the qualitative structure of the decision boundary.
 
 ---
 
@@ -99,7 +152,7 @@ The prioritization structure is robust to Gaussian noise in the hazard proxy (σ
 
 ## Next Steps
 
-- Outcome sensitivity (p02, p10 scenarios)
+- Outcome sensitivity analysis (e.g. \(p = 0.02, 0.10\))
 - Cross-city validation (Phase 3)
 - Latent hazard modeling (Phase 4)
 
@@ -107,18 +160,18 @@ The prioritization structure is robust to Gaussian noise in the hazard proxy (σ
 
 ## Reproducibility
 
-Notebook:
+**Notebook**
 notebooks/15_phase2_hazard_noise.ipynb
 
+**Key parameters**
 
-Key parameters:
-- seed = 42
-- N = 5000
-- k = 1000
-- PyMC sampling: 2 chains, 500 draws
+- Random seed: 42  
+- Sample size: \(N = 5000\)  
+- Top-k: \(k = 1000\)  
+- PyMC sampling: 2 chains, 500 draws  
 
 ---
 
-## Interpretation (short version)
+## Interpretation (Short Version)
 
 > The decision boundary is narrow, stable, and robust to hazard uncertainty.
