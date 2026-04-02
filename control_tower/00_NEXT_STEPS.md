@@ -191,3 +191,9 @@ This file defines the operational state of Habnetic RTM.
 Phase 0: exposure backbone frozen.  
 Phase 1: Bayesian baseline closed.  
 Phase 2: structural uncertainty (future).
+
+
+## Phase 3
+- [ ] Read and lock PHASE3_TRANSFER_PROTOCOL.md
+- [ ] Implement Rotterdam-anchored scaler
+- [ ] Run Hamburg transfer (MVP)
