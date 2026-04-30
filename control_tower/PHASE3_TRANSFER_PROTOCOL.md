@@ -61,6 +61,13 @@ Hazard:
 
 No additional features per city.
 
+### 3.3.1 Derived exposure proxy
+`E_hat_v0` must be constructed using the same formula as Rotterdam from the same scaled exposure components.
+
+If `E_hat_v0` in Rotterdam was defined as the mean of standardised exposure components, target cities must use the same Rotterdam-anchored scaling parameters before aggregation.
+
+No per-city z-score construction is allowed.
+
 ---
 
 ### 3.4 Outcome definition
@@ -69,6 +76,15 @@ No additional features per city.
 No recalibration per city.
 
 ---
+
+### 3.4.1 Synthetic outcome instantiation
+Synthetic outcomes in target cities must be generated using:
+- the same coefficient values used in Phase 1
+- the same functional form
+- the same stochastic draw rule
+- city-specific predictor values after fixed feature construction and Rotterdam-anchored scaling
+
+No target-city recalibration is allowed.
 
 ### 3.5 Scaling rule
 
@@ -202,6 +218,27 @@ Flag:
 
 Interpretation:
 - results outside support are structural stress, not model failure
+
+Support diagnostics must be computed at minimum for:
+- dist_to_water_m
+- water_len_density_250m
+- water_len_density_500m
+- water_len_density_1000m
+- H_pluvial_v1_mm
+- H_std
+- E_hat_v0
+
+### Additional required output
+- `run_metadata.json`
+
+This file must record:
+- city code
+- protocol version
+- scaler file used
+- model version
+- inference settings
+- feature column names
+- timestamp
 
 ---
 
