@@ -71,8 +71,24 @@ Absolute k values are not directly comparable across cities due to large differe
 
 ---
 
-## What to test next
+## Posterior Predictive Checks
 
-- Sensitivity to prior specification (already partially addressed)  
-- Sensitivity to hazard formulation (proxy vs latent hazard)  
-- Stability under stronger domain shift (future cities)  
+Posterior predictive checks show that the model reproduces the observed binary outcome distribution across all cities.
+
+- RTM and HAM exhibit near-perfect overlap between observed and posterior predictive distributions.
+- DON shows slightly wider predictive uncertainty, but maintains good alignment.
+
+This indicates that the generative model is internally consistent and suitable for downstream decision analysis.
+
+Importantly, this does not validate real-world hazard or outcome realism, only model coherence under the synthetic setup.
+
+---
+
+## Structural conclusion
+
+Across all cities, posterior decision instability remains highly localised near the prioritisation threshold.
+
+Cross-city transfer modifies calibration but does not alter the fundamental structure of decision confidence.
+
+This supports the hypothesis that decision instability is a structural property of the model rather than an artefact of a specific city or hazard realisation.
+

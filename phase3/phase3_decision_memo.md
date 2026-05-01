@@ -14,7 +14,17 @@ Can the fixed-spec model produce stable prioritisation decisions under cross-cit
 
 ### 3.1 Top-k probability structure and transfer behaviour
 
-<--- PUT YOUR TEXT HERE --->
+Across all cities, top-k membership probabilities are highly polarised:
+
+- Most assets have probabilities close to 0 (stable exclusion) or 1 (stable inclusion)
+- The share of borderline assets (0.2 < p < 0.8) remains extremely small
+
+Under transfer:
+
+- Hamburg closely matches Rotterdam, indicating strong structural stability
+- Donostia shows a mild widening of the distribution, but borderline mass remains below 1%
+
+This indicates that transfer affects calibration but does not fundamentally alter the decision structure.
 
 ## 4. Supporting Evidence
 

@@ -247,9 +247,9 @@ This is a **methodological result**.
 
 ## 12. Next Steps
 
-- ECDF comparison  
-- Boundary visualisation  
-- Phase 4: latent hazard  
+- Introduce latent (probabilistic) hazard layer
+- Compare proxy vs latent hazard formulations
+- Evaluate impact on decision stability structure
 
 ---
 
