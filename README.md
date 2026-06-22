@@ -1,119 +1,120 @@
 # 🧠 Habnetic Documentation
 
-Central documentation and research notes for the **Habnetic Open Research Lab**.
+Central documentation repository for the **Habnetic** open research project.
 
 ---
 
-## 📚 Purpose
+# Purpose
 
-This repository serves as the written backbone of Habnetic — a structured archive of theory, methodology, and development notes linking architectural thinking with probabilistic modeling and open-source computation.
+This repository contains the conceptual foundations, methodological documentation, research notes, and design decisions that define the Habnetic framework.
 
-It replaces private note-taking tools with a transparent, version-controlled documentation system.
+It serves as the canonical reference for terminology, modelling assumptions, theoretical background, and research methodology used throughout the Habnetic ecosystem.
 
-The guiding principles, scope, and intent of the project are defined in  
-[`vision/manifesto.md`](vision/manifesto.md).
-
----
-
-## 📌 Current Project State (RTM)
-
-Habnetic’s Rotterdam (RTM) pipeline currently consists of:
-
-### Phase 0 — Deterministic Exposure Backbone (Frozen)
-- Spatial normalization (boundary, buildings, hydrography)
-- Stable `bldg_id` propagation
-- Water exposure priors
-- Deterministic latent exposure index `E_hat`
-- Deterministic hazard scaffold (`H_pluvial_v0`)
-
-### Phase 1 — Bayesian Baseline + Decision Stability (Closed)
-- Synthetic outcome proxy
-- Logistic Bayesian model
-- Sensitivity analysis (baseline + beta structure)
-- Posterior → decision extraction
-- Citywide posterior scoring (221,324 buildings)
-- Quantified ranking stability and instability region
-
-Phase 2 (structural uncertainty and probabilistic hazard propagation) is planned but not yet implemented.
+Rather than documenting software implementation, this repository documents **what the models mean**, **how they are intended to be interpreted**, and **why specific modelling choices were made**.
 
 ---
 
-## 🧭 How to read this repository
+# Current research focus
 
-This documentation is intentionally **incremental**.
+Current documentation supports the development of **posterior decision stability** for robust urban prioritisation under uncertainty.
 
-Many sections begin as conceptual scaffolding or placeholders and are expanded only when they are actively used in models or decisions. This avoids freezing assumptions too early and keeps documentation aligned with working code.
+The present case study focuses on:
 
-If a document appears minimal, it likely reflects an area still under exploration or not yet exercised by the modeling pipeline.
+* Rotterdam (baseline)
+* Hamburg (cross-city transfer)
+* Donostia-San Sebastián (cross-city transfer)
+
+Future documentation will expand alongside subsequent Habnetic research phases.
 
 ---
 
-## 🗂 Structure
+# Repository structure
 
-```
+```text
 docs/
-│   LICENSE
-│   README.md
 │
-├───projects/
-│       lunar_analogue_future_case.md
-│       resilient_housing_bayes_summary.md
-│       target_sites.md
-│
-├───references/
-│       bibliography.bib
-│       datasets_list.md
-│
-├───theory/
-│       bayesian_reasoning.md
-│       resilience_metrics.md
-│       uncertainty_modeling.md
-│
-└───vision/
-        collaboration.md
-        manifesto.md
-        roadmap_2026.md
+├── projects/
+├── references/
+├── theory/
+├── vision/
+└── README.md
 ```
 
----
+Typical contents include:
 
-## 🔁 Relationship to Code
-
-This repository documents structure and theory.
-
-Executable models, inference workflows, and decision artifacts live in:
-
-- [Resilient Housing Bayes](https://github.com/Habnetic/resilient-housing-bayes)
-- [Habnetic Data](https://github.com/Habnetic/data)
-
-The documentation reflects the state of those repositories but does not duplicate their code.
+* research notes
+* theoretical foundations
+* methodological specifications
+* Bayesian modelling concepts
+* exposure definitions
+* terminology
+* project roadmaps
+* literature references
 
 ---
 
-## ✍️ Conventions
+# Relationship to the Habnetic ecosystem
 
-- All text is written in Markdown (`.md`) for maximum compatibility.
-- Use relative links between sections (e.g. `../projects/resilient_housing_bayes_summary.md`).
-- Reference datasets by linking to the Habnetic Data Repository.
-- Clearly distinguish deterministic components from probabilistic components.
-- Explicitly label synthetic assumptions.
+This repository defines the conceptual layer.
 
----
+Responsibilities are intentionally separated:
 
-## 🌍 Related Repositories
+* **Habnetic/docs** → concepts, methodology, terminology
+* **Habnetic/data** → raw, processed, and derived datasets
+* **resilient-housing-bayes** → Bayesian inference and statistical modelling
+* **habnetic.github.io** → public communication
 
-- [Resilient Housing Bayes](https://github.com/Habnetic/resilient-housing-bayes)
-- [Habnetic Data](https://github.com/Habnetic/data)
-- [Habnetic Website](https://habnetic.org)
+The documentation provides the conceptual reference used by the other repositories but intentionally avoids duplicating code.
 
 ---
 
-## License
+# Stewardship
 
-Unless otherwise stated, the contents of this repository are licensed under the MIT License.
+This repository was founded and is currently stewarded by **Mikel Martínez Mugica**.
 
-The Habnetic name and logo are not licensed for reuse or endorsement.
+Development is conducted openly under permissive open-source licenses. Strategic direction, conceptual coherence, editorial decisions, and project governance currently remain under the stewardship of **Mikel Martínez Mugica**.
+
+Suggestions, corrections, and discussion are always welcome.
 
 ---
 
-© 2026 Habnetic — Open Research for Resilient Futures
+# Documentation principles
+
+The repository follows several guiding principles:
+
+* documentation evolves together with the research
+* concepts are documented before implementation where appropriate
+* deterministic and probabilistic components are clearly distinguished
+* assumptions are explicitly stated
+* terminology remains consistent across all Habnetic repositories
+* documentation should remain reproducible, version controlled, and transparent
+
+---
+
+# Related repositories
+
+* https://github.com/Habnetic/resilient-housing-bayes
+* https://github.com/Habnetic/data
+* https://github.com/Habnetic/habnetic.github.io
+
+---
+
+# Links
+
+🌐 Website: https://habnetic.org
+
+🆔 ORCID: https://orcid.org/0009-0006-5170-4405
+
+📫 Email: [info@habnetic.org](mailto:info@habnetic.org)
+
+---
+
+# License
+
+Unless stated otherwise, the contents of this repository are released under the **MIT License**.
+
+The **Habnetic** name, logo, visual identity, and branding assets are **not** covered by the MIT License and may not be reused without permission.
+
+---
+
+© 2026 Habnetic — Open research for posterior decision stability.
