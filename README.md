@@ -118,3 +118,13 @@ The **Habnetic** name, logo, visual identity, and branding assets are **not** co
 ---
 
 © 2026 Habnetic — Open research for posterior decision stability.
+
+## Phase 3 research publications
+
+- Latest preprint: https://doi.org/10.5281/zenodo.23110713
+- Latest research dataset: https://doi.org/10.5281/zenodo.24629254
+- [Publication closure and version register](phase3/PHASE3_PUBLICATION_CLOSURE_2026-11-28.md)
+
+The November 2026 revision corrects the interpretation
+of the historical precipitation proxy and documents
+geographic source attribution and research-data availability.

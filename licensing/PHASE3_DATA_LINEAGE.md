@@ -115,3 +115,20 @@ Schema inspection found **no explicit geometry, coordinate, address, or building
 - `data/raw/RTM/hazards/river_margin/SOURCE.md` describes **Phase 0 regulatory waterway-context proxies** and illustrative filenames; it is **not** evidence for Phase 3 TOP50NL hydrography acquisition.
 - This investigation does **not** modify the frozen Phase 3 models, their results, or the tagged local/private `rotterdam-reference-v1` Operations Center release.
 - Public code licences, upstream data licences, data-product licences and permissions to redistribute packaged web assets are separate concerns.
+
+## Subsequent publication audit closure
+
+Update: 2026-11-28.
+
+The original evidence snapshot above is retained as a
+historical record.
+
+The subsequent Phase 3 technical licensing investigation
+was closed with documented limitations. Source attribution
+and historical precipitation interpretation were updated
+in manuscript v1.2 and the companion dataset release.
+
+See the [Phase 3 publication closure](../phase3/PHASE3_PUBLICATION_CLOSURE_2026-11-28.md).
+
+Residual exact historical lineage limitations remain
+applicable.

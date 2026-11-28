@@ -75,6 +75,29 @@ Potential work includes replacing simplified proxies with better-grounded hazard
 
 Compare with M0/M1 under controlled assumptions. Check prior predictive plausibility, posterior predictive behaviour when observations are available, convergence diagnostics, sensitivity to priors and likelihoods, and how uncertainty reaches the decision boundary. Avoid building an entire hydraulic simulator unless a specific scientific need justifies it.
 
+**Historical precipitation correction follow-up:**
+
+The Phase 3 historical accumulated-precipitation proxy
+is retained as the reference baseline.
+
+M2 will:
+
+- Deaccumulate ERA5-Land precipitation, accounting for
+  forecast-cycle resets and missing timestamps.
+- Validate independent hourly precipitation totals.
+- Calculate and compare annual maximum precipitation
+  metrics at alternative accumulation durations.
+- Evaluate changes in hazard distributions, posterior
+  estimates, top-k membership probabilities, borderline
+  counts and selected-set overlap.
+- Preserve the original Phase 3 baseline and version
+  the improved hazard representation independently.
+
+Changes in decision stability do not by themselves
+establish improved empirical flood-risk prediction.
+
+Reference: [Phase 3 publication closure](../phase3/PHASE3_PUBLICATION_CLOSURE_2026-11-28.md).
+
 ### M3 — Improve exposure, vulnerability and consequences
 
 **Question:** Do more informative consequences or intervention objectives change the decisions that matter?
